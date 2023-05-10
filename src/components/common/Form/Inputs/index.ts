@@ -1,4 +1,4 @@
-import BasicInput from './BasicInput';
-import HookFormInput from './HookFormInput';
+import Input from './Input';
+import InputWithHookForm from './InputWithHookForm';
 
-export { BasicInput, HookFormInput };
+export { Input, InputWithHookForm };
