@@ -28,7 +28,7 @@ export default function CompareFormPage({}: Props) {
   }
 
   return (
-    <div tw="px-[200px] bg-amber-200 h-[100vh]">
+    <div tw="px-20 bg-amber-200 h-[100vh]">
       폼 컴포넌트 예시 페이지
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* react-hook-form 사용하는 폼 */}

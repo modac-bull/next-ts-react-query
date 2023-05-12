@@ -1,17 +1,17 @@
-import { InputHTMLAttributes, Ref, forwardRef } from 'react';
-import { css, styled } from 'twin.macro';
+import { InputHTMLAttributes, Ref, forwardRef } from 'react'
+import { css, styled } from 'twin.macro'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type: string;
+  type: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ type = 'text', ...props }, ref: Ref<HTMLInputElement>) => {
-    return <InputContainer type={type} ref={ref} {...props} />;
+    return <InputContainer type={type} ref={ref} {...props} />
   },
-);
+)
 
-export default Input;
+export default Input
 
 const InputContainer = styled.input`
   width: 100%;
@@ -25,4 +25,4 @@ const InputContainer = styled.input`
     css`
       background-color: #242121;
     `}
-`;
+`
