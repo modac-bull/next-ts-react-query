@@ -130,7 +130,6 @@ export function removeAllTodo() {
 }
 ```
 
-
 1. 전체 상태값을 하나의 객체에 저장한다.
 2. 상태값은 불변 객체다.
 3. 상태값은 순수 함수에 의해서만 변경되어야 한다.
@@ -138,3 +137,80 @@ export function removeAllTodo() {
 리덕스의 세 가지 원칙에 위배되지 않으므로 액션 생성자 함수에서는 부수 효과를 발생시켜도 괜찮다...(???왜)
 
 예) addTodo 함수에서 새로운 할일을 서버에 저장하기 위해 API 호출을 할 수 있다.
+
+---
+
+### 6.2.2 미들웨어
+
+미들웨어(middleware)는 리듀서가 액션을 처리하기 전에 실행되는 함수다. 디버깅 목적으로 상태값 변경 시 로그를 출력하거나, 리듀서에서 발생한 예외를 서버로 전송하는 등의 목적으로 미들웨어를 활용할 수 있다. 리덕스 사용 시 특별히 미들웨어를 설정하지 않았다면 발생한 액션은 곧바로 리듀서로 보내진다.
+
+```
+const myMiddleWare = store => next => action => next(action)
+```
+
+### 6.2.3 리듀서
+
+리듀서는 액션이 발생했을 때 새로운 상태값을 만드는 함수다.
+
+```
+(state, action) => nextState
+```
+
+```js
+function reducer(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    // ...
+    case REMOVE_ALL:
+      return {
+        ...state,
+        todos: [],
+      }
+    case REMOVE:
+      return {
+        ...state,
+        todos: state.todos.filter(todo => todo.id !== action.id),
+      }
+    default:
+      return state
+  }
+}
+const INTIAL_STATE = { todos: [] }
+```
+
+<`createReducer` 함수로 리듀서 작성하기>
+
+```js
+const reducer = createReducer(INTIAL_STATE, {
+  [ADD]: (state, aciton) => state.todos.push(action.todo),
+  [REMOVE_ALL]: state => (state.todos = []),
+  [REMOVE]: (state, action) =>
+    (state.todos = state.todos.filter(todo => todo.id !== action.id)),
+})
+```
+
+### 6.2.4 스토어
+
+스토어(store)는 리덕스의 상태값을 가지는 객체다. 액션의 발생은 스토어의 dispatch 메서드로 시작된다. 스토어는 액션이 발생하면 미들웨어 함수를 실행하고, 리듀서를 실행해서 상태값을 새로운 값으로 변경한다. 그리고 사전에 등록된 모든 이벤트 처리 함수에게 액션의 처리가 끝났음을 알린다. (?)
+
+```js
+const INTIAL_STATE = { value: 0 }
+const reducer = createReducer(INTIAL_STATE, {
+  INCREMENT: state => (state.value += 1),
+})
+const store = createStore(reducer)
+
+let prevState
+store.subscribe(() => {
+  const state = store.getState()
+  if (state === prevState) {
+    console.log('상태값 같음')
+  } else {
+    console.log('상태값 변경됨')
+  }
+  prevState = state
+})
+
+store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'OTHER_ACTION' })
+store.dispatch({ type: 'INCREMENT' })
+```
