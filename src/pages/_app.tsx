@@ -1,10 +1,15 @@
 import type { AppProps } from 'next/app'
 import GlobalStyles from '../styles/GlobalStyles'
+import { ModalContextProvider } from '../context/ModalContext'
+import Modal from '../components/ui/modals/Modal'
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
-    <GlobalStyles />
-    <Component {...pageProps} />
+    <ModalContextProvider>
+      <GlobalStyles />
+      <Component {...pageProps} />
+      <Modal />
+    </ModalContextProvider>
   </>
 )
 
