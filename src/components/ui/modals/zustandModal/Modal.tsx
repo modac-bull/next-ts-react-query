@@ -1,19 +1,27 @@
-const Modal = ({
-  title,
-  contents,
-  onClose,
-}: {
-  title: string
-  contents: string
-  onClose: () => void
-}) => {
-  console.log(title, contents, onClose)
+import { Body, Container, Header, Overlay } from './atoms'
 
+const Modal = ({
+  id,
+  message,
+  modalClose,
+  modalSubmit,
+}: {
+  id: string
+  message: string
+  modalClose: () => void
+  modalSubmit: () => void
+}) => {
   return (
     <div>
-      <h1>{title}</h1>
-      <p>{contents}</p>
-      <button onClick={onClose}>Close</button>
+      <Overlay />
+      <Container>
+        <Header title={id} onClose={modalClose} />
+        <Body>
+          <p>{message}</p>
+          <button onClick={modalSubmit}>Submit</button>
+          <button onClick={modalClose}>Close</button>
+        </Body>
+      </Container>
     </div>
   )
 }

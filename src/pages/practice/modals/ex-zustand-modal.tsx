@@ -1,22 +1,30 @@
-import CustomModal from '@/components/ui/modals/zustandModal/CustomModal'
 import Modal from '@/components/ui/modals/zustandModal/Modal'
-import { useModalStore } from '@/store/useModalStore'
+import { modalStore } from '@/store/modalStore'
+import { useId } from 'react'
 
 function HomePage() {
-  const { openModal } = useModalStore()
+  const { openModal } = modalStore()
+
+  const submitTest = () => {
+    console.log('submit test')
+  }
+
+  const cancelTest = () => {
+    console.log('cancel test')
+  }
 
   return (
     <div>
-      <button onClick={() => openModal(Modal, 'test', 'test')}>
-        Open Modal
-      </button>
       <button
         onClick={() =>
-          openModal(CustomModal, 'test', 'test', 'sdfasdfasdfsd')
-        }   
+          openModal('id1', Modal, 'message11111', submitTest, cancelTest)
+        }
       >
-        Open custom Modal
+        Open Modal
       </button>
+      {/* <button onClick={() => openModal('id2', Modal, 'message')}>
+        Open custom Modal
+      </button> */}
     </div>
   )
 }

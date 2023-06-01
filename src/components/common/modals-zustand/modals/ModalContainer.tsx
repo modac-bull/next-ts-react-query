@@ -1,7 +1,9 @@
-import { modalStore } from '@/store/modalStore'
+import React from 'react';
 
-const ModalContainer = () => {
-  const { modals, closeModal } = modalStore()
+import { modalStore } from '@/store/modalStore';
+
+export default function ModalContainer() {
+  const { modals, closeModal } = modalStore();
 
   return (
     <>
@@ -10,6 +12,7 @@ const ModalContainer = () => {
           id,
           component: ModalComponent,
           message,
+          title,
           onSubmit,
           onClose,
           props,
@@ -18,10 +21,11 @@ const ModalContainer = () => {
             <ModalComponent
               id={id}
               key={id}
+              title={title}
               message={message}
               modalClose={() => {
-                closeModal(id)
-                onClose()
+                closeModal(id);
+                onClose();
               }}
               modalSubmit={onSubmit}
               {...props}
@@ -29,7 +33,5 @@ const ModalContainer = () => {
           ),
       )}
     </>
-  )
+  );
 }
-
-export default ModalContainer

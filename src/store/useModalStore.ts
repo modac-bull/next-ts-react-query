@@ -18,6 +18,9 @@ type ModalState = {
   closeModal: (id: string) => void
 }
 
+/**
+ * @deprecated
+ */
 export const useModalStore = create<ModalState>(set => ({
   modals: [],
   openModal: (id, component, title, contents, props = {}) =>
