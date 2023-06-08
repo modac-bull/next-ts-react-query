@@ -1,20 +1,20 @@
-import Link from 'next/link';
-import { css, styled, theme } from 'twin.macro';
+import Link from 'next/link'
+import { css, styled, theme } from 'twin.macro'
 
 /*=================================================
     관리자 공통 버튼 컴포넌트
 =================================================*/
 
 type ButtonProps = {
-  size: 'sm' | 'md';
-  variant: 'primary' | 'secondary' | 'tertiary';
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
-  autofocus?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  href?: string;
-  children: React.ReactNode;
-};
+  size: 'sm' | 'md'
+  variant: 'primary' | 'secondary' | 'tertiary'
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  autofocus?: boolean
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  href?: string
+  children: React.ReactNode
+}
 
 export default function Button({
   size,
@@ -40,7 +40,7 @@ export default function Button({
           {children}
         </ButtonElement>
       </Link>
-    );
+    )
   }
   return (
     <ButtonElement
@@ -53,7 +53,7 @@ export default function Button({
     >
       {children}
     </ButtonElement>
-  );
+  )
 }
 
 /**
@@ -75,7 +75,7 @@ const ButtonBaseStyle = css`
   outline: none;
   transition: all 0.2s;
   cursor: pointer;
-`;
+`
 
 /**
  * [Button Size Style]
@@ -89,16 +89,14 @@ const SizeStyles = {
     min-width: 74px;
     height: 36px;
     padding: 7px 12px;
-    font: ${theme`typography.admin.Pretendard/14_medium`};
   `,
   md: css`
     width: auto;
     min-width: 130px;
     padding: 14px 16px;
     height: 50px;
-    font: ${theme`typography.admin.Pretendard/14_medium`};
   `,
-};
+}
 
 /**
  * [Button Variant Style]
@@ -108,44 +106,44 @@ const SizeStyles = {
  */
 const VariantStyles = {
   primary: css`
-    color: ${theme`colors.admin.sub-ffffff`};
-    background-color: ${theme`colors.admin.primary-5767dd`};
+    color: #fff;
+    background-color: #57656d;
     &:hover {
-      background-color: ${theme`colors.admin.sub-384ad7`};
+      background-color: #3841d7;
     }
     &:disabled {
-      color: ${theme`colors.admin.sub-c4caf3`};
-      background-color: ${theme`colors.admin.primary-5767dd`};
+      color: #c4caf3;
+      background-color: #57656d;
       pointer-events: none;
     }
   `,
   secondary: css`
-    border: 1px solid ${theme`colors.admin.border-e2e5ec`};
-    color: ${theme`colors.admin.ub-323232`};
-    background-color: ${theme`colors.admin.sub-ffffff`};
+    border: 1px solid #e2e2e2;
+    color: #323232;
+    background-color: #fff;
     &:hover {
-      background-color: ${theme`colors.admin.sub-f7f8fa`};
+      background-color: #f7f8fa;
     }
     &:disabled {
       border-color: transparent;
-      color: ${theme`colors.admin.sub-999999`};
-      background-color: ${theme`colors.admin.sub-f5f5f5`};
+      color: #999;
+      background-color: #f5f5f5;
       pointer-events: none;
     }
   `,
   tertiary: css`
-    color: ${theme`colors.admin.primary-5767dd`};
-    background-color: ${theme`colors.admin.sub-eeeffc`};
+    color: #57656d;
+    background-color: #eeeffc;
     &:hover {
-      background-color: ${theme`colors.admin.sub-d5d9f7`};
+      background-color: #d5d9f7;
     }
     &:disabled {
-      color: ${theme`colors.admin.sub-999999`};
-      background-color: ${theme`colors.admin.sub-f5f5f5`};
+      color: #999999;
+      background-color: #f5f5f5;
       pointer-events: none;
     }
   `,
-};
+}
 
 /**
  * [Button Component Style]
@@ -157,11 +155,11 @@ const ButtonElement = styled.button<ButtonProps>`
   /* Base Style */
   ${ButtonBaseStyle}
   /* Size Style */
-  ${(props) => SizeStyles[props.size]}
+  ${props => SizeStyles[props.size]}
   /* Variant Style */
-  ${(props) => VariantStyles[props.variant]}
+  ${props => VariantStyles[props.variant]}
   /* Icon Image Style */
   img {
     margin-right: 6px;
   }
-`;
+`

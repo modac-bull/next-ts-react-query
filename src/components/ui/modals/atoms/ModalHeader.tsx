@@ -1,10 +1,10 @@
-import React from 'react';
-import { styled, theme } from 'twin.macro';
+import React from 'react'
+import { styled, theme } from 'twin.macro'
 
 type ModalHeaderProps = {
-  title: string;
-  onClose: () => void;
-};
+  title: string
+  onClose: () => void
+}
 
 export default function ModalHeader({ title, onClose }: ModalHeaderProps) {
   return (
@@ -14,19 +14,18 @@ export default function ModalHeader({ title, onClose }: ModalHeaderProps) {
         닫기
       </ButtonClose>
     </HeaderContainer>
-  );
+  )
 }
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 30px 30px 0;
-`;
+`
 
 const HeaderTitle = styled.h1`
-  font: ${theme`typography.admin.Pretendard/16_bold`};
   line-height: 1.5;
-`;
+`
 
 const ButtonClose = styled.button`
   text-indent: -9999px;
@@ -36,4 +35,4 @@ const ButtonClose = styled.button`
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto;
-`;
+`

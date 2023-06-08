@@ -19,7 +19,6 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderTitle = styled.h1`
-  font: ${theme`typography.admin.Pretendard/16_bold`};
   line-height: 1.5;
 `;
 
