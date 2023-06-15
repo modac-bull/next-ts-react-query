@@ -1,20 +1,28 @@
 import React from 'react'
-import ReactPaginate from 'react-paginate'
 
 import { styled } from 'twin.macro'
+import ReactPaginate from 'react-paginate'
 
-export default function MyPagination() {
-  const handlePageChange = selectedItem => {
-    // 페이지 변경에 대한 처리를 수행합니다.
-    console.log('Selected Page:', selectedItem.selected)
+type Props = {
+  pageCount: number // 전체 페이지 수
+  pageRange: number // 현재 페이지를 중심으로 양쪽에 보여줄 페이지 수
+  onPageChangeHandler: (e) => void
+}
+
+export default function Pagination({
+  pageCount,
+  pageRange = 5,
+  onPageChangeHandler,
+}: Props) {
+  const pageChangeHandler = (selectedPage: { selected: number }) => {
+    console.log('selectedPage', selectedPage)
   }
-
   return (
     <StyledPagination
-      pageCount={78} // 전체 페이지 수
-      pageRangeDisplayed={5} // 현재 페이지를 중심으로 양쪽에 보여줄 페이지 수
+      pageCount={pageCount}
+      pageRangeDisplayed={pageRange}
       marginPagesDisplayed={1} // 처음과 마지막 페이지 사이에 표시할 페이지 수
-      onPageChange={handlePageChange} // 페이지 변경 핸들러 함수
+      onPageChange={e => onPageChangeHandler(e)} // 페이지 변경 핸들러 함수
       activeClassName="active" // 활성화된 페이지의 클래스명
     />
   )
@@ -26,7 +34,7 @@ const StyledPagination = styled(ReactPaginate)`
   list-style: none;
   padding: 0;
   padding: 50px 0;
-  border: 1px solid blue; 
+  border: 1px solid blue;
   li {
     margin-right: 5px;
     cursor: pointer;

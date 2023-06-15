@@ -1,0 +1,1 @@
+GET http://momstay_test_api.nc188.reconers.com/product?take=10&page=1 HTTP/1.1
