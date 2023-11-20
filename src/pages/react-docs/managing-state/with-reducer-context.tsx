@@ -1,9 +1,6 @@
 import AddTask from '@/components/common/react-docs/managing-state/with-reducer-context/AddTask'
 import TaskList from '@/components/common/react-docs/managing-state/with-reducer-context/TaskList'
-import {
-  TasksContext,
-  TasksDispatchContext,
-} from '@/context/react-docs/TasksContext'
+import { TasksProvider } from '@/context/react-docs/TasksContext'
 import tasksReducer from '@/reducer/tasksReducer'
 import React, { useReducer, useState } from 'react'
 
@@ -31,13 +28,11 @@ export default function WithReducerContextPage() {
 
   return (
     <>
-      <TasksContext.Provider value={tasks}>
-        <TasksDispatchContext.Provider value={dispatch}>
-          <h1>리듀서 이해하기</h1>
-          <AddTask />
-          <TaskList />
-        </TasksDispatchContext.Provider>
-      </TasksContext.Provider>
+      <TasksProvider>
+        <h1>리듀서 이해하기</h1>
+        <AddTask />
+        <TaskList />
+      </TasksProvider>
     </>
   )
 }

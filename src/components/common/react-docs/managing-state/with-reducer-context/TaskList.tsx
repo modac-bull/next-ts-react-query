@@ -1,18 +1,15 @@
 import Button from '@/components/ui/buttons/Button'
-import {
-  TasksContext,
-  TasksDispatchContext,
-} from '@/context/react-docs/TasksContext'
+import { useTasks, useTasksDispatch } from '@/context/react-docs/TasksContext'
+
 import { TaskType } from '@/pages/react-docs/managing-state/with-reducer'
-import { useContext, useState } from 'react'
-import { styled } from 'twin.macro'
+import { useState } from 'react'
 
 type TaskProps = {
   task: TaskType
 }
 
 export default function TaskList() {
-  const tasks = useContext(TasksContext)
+  const tasks = useTasks()
   return (
     <ul>
       {tasks?.map(task => (
@@ -27,7 +24,7 @@ export default function TaskList() {
 function Task({ task }: TaskProps) {
   const [isEditing, setIsEditing] = useState(false)
 
-  const dispatch = useContext(TasksDispatchContext)
+  const dispatch = useTasksDispatch()
   let taskContent
   if (isEditing) {
     taskContent = (
