@@ -1,6 +1,6 @@
 import { TaskType } from '@/pages/react-docs/managing-state/with-reducer'
 
-type TaskActionType =
+export type TaskActionType =
   | { type: 'added'; id: number; text: string }
   | { type: 'changed'; task: TaskType }
   | { type: 'deleted'; id: number }
