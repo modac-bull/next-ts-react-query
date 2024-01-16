@@ -1,5 +1,6 @@
 import tw from 'twin.macro'
 import { Button, Logo } from '../components'
+import Counter from '@/components/counter/Counter'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -11,12 +12,7 @@ const styles = {
 
 const App = () => (
   <div css={styles.container({ hasBackground: true })}>
-    <div tw="flex flex-col justify-center h-full gap-y-5">
-      <Button variant="primary">Submit</Button>
-      <Button variant="secondary">Cancel</Button>
-      <Button isSmall>Close</Button>
-    </div>
-    <Logo />
+    <Counter />
   </div>
 )
 

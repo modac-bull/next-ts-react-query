@@ -1,0 +1,41 @@
+// redux
+import { createStore, Reducer } from 'redux'
+
+interface CounterState {
+  counter: number
+}
+
+interface IncrementAction {
+  type: 'INCREMENT'
+}
+
+interface DecrementAction {
+  type: 'DECREMENT'
+}
+
+interface IncreaseAction {
+  type: 'INCREASE'
+  amount: number
+}
+
+type CounterAction = IncrementAction | DecrementAction | IncreaseAction
+
+const counterReducer: Reducer<CounterState, CounterAction> = (
+  state = { counter: 0 },
+  action,
+) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { counter: state.counter + 1 }
+    case 'INCREASE':
+      return { counter: state.counter + action.amount }
+    case 'DECREMENT':
+      return { counter: state.counter - 1 }
+    default:
+      return state
+  }
+}
+
+const store = createStore(counterReducer)
+
+export default store
