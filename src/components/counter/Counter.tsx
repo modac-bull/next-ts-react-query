@@ -5,11 +5,12 @@ import 'twin.macro'
 const Counter = () => {
   const dispatch = useDispatch()
   const counter = useSelector((state: { counter: number }) => state.counter)
-
-  console.log('counter : ', counter)
+  const show = useSelector(
+    (state: { showCounter: boolean }) => state.showCounter,
+  )
 
   const toggleCounter = () => {
-    // dispatch({ type: 'toggle' })
+    dispatch({ type: 'TOGGLE' })
   }
   const incrementHandler = () => {
     dispatch({ type: 'INCREMENT' })
@@ -23,12 +24,17 @@ const Counter = () => {
   return (
     <main>
       <h1>Redux Counter</h1>
-      <div className="value">{counter}</div>
-      <div tw="flex flex-col">
-        <button onClick={incrementHandler}>Increment</button>
-        <button onClick={increaseHandler}>Increase by 5</button>
-        <button onClick={decrementHandler}>Decrement</button>
-      </div>
+
+      {show && (
+        <div>
+          <div className="value">{counter}</div>
+          <div tw="flex flex-col">
+            <button onClick={incrementHandler}>Increment</button>
+            <button onClick={increaseHandler}>Increase by 5</button>
+            <button onClick={decrementHandler}>Decrement</button>
+          </div>
+        </div>
+      )}
       <button onClick={toggleCounter}>Toggle Counter</button>
     </main>
   )
