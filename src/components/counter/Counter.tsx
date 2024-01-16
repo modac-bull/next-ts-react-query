@@ -1,25 +1,33 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { counterActions } from '@/store/index'
 import 'twin.macro'
 
+// store 블러오기
 const Counter = () => {
   const dispatch = useDispatch()
-  const counter = useSelector((state: { counter: number }) => state.counter)
-  const show = useSelector(
-    (state: { showCounter: boolean }) => state.showCounter,
-  )
+
+  // store 블러오기
+  const counter = useSelector((state: any) => {
+    return state.counter.counter
+  })
+  const show = useSelector((state: any) => state.counter.showCounter)
+
+  console.log('show : ', show)
 
   const toggleCounter = () => {
-    dispatch({ type: 'TOGGLE' })
+    dispatch(counterActions.toggle())
   }
   const incrementHandler = () => {
-    dispatch({ type: 'INCREMENT' })
+    dispatch(counterActions.increment())
   }
   const decrementHandler = () => {
-    dispatch({ type: 'DECREMENT' })
+    // dispatch({ type: 'DECREMENT' })
+    dispatch(counterActions.decrement())
   }
   const increaseHandler = () => {
-    dispatch({ type: 'INCREASE', amount: 5 })
+    // dispatch({ type: 'INCREASE', amount: 5 })
+    dispatch(counterActions.increase({ amount: 5 }))
   }
   return (
     <main>
